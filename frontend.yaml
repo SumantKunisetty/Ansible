@@ -2,7 +2,17 @@
   hosts: all
   become: true
   tasks:
+   - name: Install nodejs
+     ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_22.x | bash -
+
    - name: Install nginx
      ansible.builtin.dnf:
-      name: '@nginx:1.26'
+      name: 
+        - '@nginx:1.26'
+        -  nodejs
       state: present 
+
+   - name: update nginx config
+     ansible.builtin.copy:
+      src: nginx.conf
+      dest: /usr/share/nginx/html/  
