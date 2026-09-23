@@ -1,0 +1,43 @@
+- name: portfolio-service
+  hosts: all
+  become: true
+  tasks:
+   - name: Install java21
+     ansible.builtin.dnf:
+      name:  java-21-openjdk-devel
+      state: present
+    
+   - name: create user app-user 
+     ansible.builtin.user:
+      name: app-user
+      shell: /bin/false
+
+   - name: create app directory
+     ansible.builtin.file:
+      path: /app
+      state: directory
+      mode: '0755'
+
+   - name: download and extract the package
+     ansbile.builtin.unarchive:
+      src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/portfolio-service.tar.gz
+      dest: /app
+     args:
+      chdir: /app
+
+   - name: change the permission of gradle
+     ansbile.builtin.user:
+      path: gradle
+      mode: 777
+
+   - name: copy the service file
+     ansible.builtin.copy:
+      src: portfolio-service.service
+      dest: /etc/systemd/system/
+
+   - name: restarting the systemctl service
+     ansible.builtin.systemd_service:
+      name: portfolio.service
+      daemon-reload: true
+      enabled: true
+      state: restarted   
