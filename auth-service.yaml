@@ -1,0 +1,48 @@
+- name: auth-service
+  hosts: all
+  become: true
+  tasks:
+   - name: install go lang
+     ansible.built.dnf:
+      name: golang
+      state: present
+
+   - name: add user
+     ansible.builtin.user:
+      name: appuser
+      shell: /bin/false
+
+   - name: create /app directory
+     ansible.builtin.file:
+      path: /app
+      state: directory
+      mode: '0755'
+    
+   - name: Download and extract the application
+     ansible.builtin.archive:
+      src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/auth-service.tar.gz
+      dest: /app
+     args:
+      chdir: /app
+  
+   - name: build the code
+     ansible.builtin.shell: CGO_ENABLED=0 go build -o auth-service ./cmd/server
+
+   - name: change  file ownership and permissions
+     ansible.builtin.file:
+      path: /app
+      owner: app-user
+      group: app-user
+      mode: 770
+    
+   - name: copy the service file
+     ansible.builtin.copy:
+      src: auth-service.service
+      dest: /etc/systemd/system/
+
+   - name: restarting the auth-service
+     ansible.builtin.systemd_service:
+      name: auth-service
+      daemon-reload: true
+      state: restarted
+      enabled: true
