@@ -27,7 +27,7 @@
      args:
       chdir: /usr/share/nginx
 
-   - name: starting servies
+   - name: starting services
      ansbile.builtin.systemd_service:
       name: nginx
       enabled: true
