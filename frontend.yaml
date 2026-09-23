@@ -28,7 +28,7 @@
       chdir: /usr/share/nginx
 
    - name: starting services
-     ansbile.builtin.systemd_service:
+     ansible.builtin.systemd_service:
       name: nginx
       enabled: true
       state: restarted
