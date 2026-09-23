@@ -2,7 +2,7 @@
   hosts: all
   become: true
   tasks:
-   - name: Install nodejs repo files
+   - name: get nodejs repo files
      ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_22.x | bash -
 
    - name: Install nginx and node js
