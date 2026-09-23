@@ -11,11 +11,11 @@
         - '@nginx:1.26'
         -  nodejs
       state: present 
-
-   - name: update nginx config
-     ansible.builtin.copy:
-      src: nginx.conf
-      dest: /usr/share/nginx/html/  
+    
+   - name: delete html folder 
+     ansible.builtin.file:
+      name: /usr/share/nginx/html
+      state: absent
 
    - name: download and extract frontend
      ansible.builtin.unarchive:
@@ -28,6 +28,11 @@
      args:
       chdir: /usr/share/nginx
 
+   - name: update nginx config
+     ansible.builtin.copy:
+      src: nginx.conf
+      dest: /usr/share/nginx/html/  
+      
    - name: starting services
      ansible.builtin.systemd_service:
       name: nginx
