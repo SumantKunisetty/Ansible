@@ -3,7 +3,7 @@
   become: true
   tasks:
     - name: Install postgres repo
-      ansbile.builtin.dnf:
+      ansible.builtin.dnf:
        name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
        state: present
        disable_gpg_check: true
@@ -39,7 +39,7 @@
         dest: /var/lib/pgsql/16/data/pg_hba.conf
 
     - name: restart postgres
-      ansbile.builtin.systemd_service:
+      ansible.builtin.systemd_service:
         name: postgresql-16
         state: started
     
@@ -49,4 +49,4 @@
         dest: /tmp/setup.sql
     
     - name: load Schema
-      ansbile.builtin.shell: sudo -u postgres /usr/pgsql-16/bin/psql < setup.sql
+      ansible.builtin.shell: sudo -u postgres /usr/pgsql-16/bin/psql < setup.sql
