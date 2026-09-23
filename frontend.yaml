@@ -18,7 +18,7 @@
       dest: /usr/share/nginx/html/  
 
    - name: download and extract frontend
-     ansbile.builtin.unarchive:
+     ansible.builtin.unarchive:
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/frontend.tar.gz
       dest: /usr/share/nginx
     
