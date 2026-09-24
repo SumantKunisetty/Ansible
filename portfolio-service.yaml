@@ -37,9 +37,7 @@
       chdir: /app
   
    - name: copy the jar file
-     ansible.builtin.copy:
-      src: /app/build/libs/*.jar
-      dest: /app/portfolio-service.jar 
+     ansible.builtin.shell: cp /app/build/libs/*.jar /app/portfolio-service.jar
 
    - name: copy the service file
      ansible.builtin.copy:
