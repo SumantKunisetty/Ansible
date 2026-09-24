@@ -23,13 +23,13 @@
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/portfolio-service.tar.gz
       dest: /app
       remote_src: true
-     args:
-      chdir: /app
 
    - name: change the permission of gradle
      ansible.builtin.user:
       path: gradle
       mode: 777
+     args:
+      chdir: /app
 
    - name: build the application using gradle
      ansible.builtin.shell: ./gradlew bootJar --no-daemon -x test
