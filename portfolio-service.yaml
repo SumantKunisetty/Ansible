@@ -17,6 +17,8 @@
       path: /app
       state: directory
       mode: '0755'
+     args:
+      chdir: /app
 
    - name: download and extract the package
      ansible.builtin.unarchive:
@@ -26,10 +28,8 @@
 
    - name: change the permission of gradle
      ansible.builtin.user:
-      name: gradle
+      path: gradle
       mode: 777
-     args:
-      chdir: /app
 
    - name: build the application using gradle
      ansible.builtin.shell: ./gradlew bootJar --no-daemon -x test
