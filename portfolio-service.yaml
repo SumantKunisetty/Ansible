@@ -22,6 +22,7 @@
      ansbile.builtin.unarchive:
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/portfolio-service.tar.gz
       dest: /app
+      remote_src: true
      args:
       chdir: /app
 
