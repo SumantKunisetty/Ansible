@@ -30,6 +30,9 @@
       path: gradle
       mode: 777
 
+   - name: build the application using gradle
+     ansible.builtin.shell: ./gradlew bootJar --no-daemon -x test
+
    - name: copy the service file
      ansible.builtin.copy:
       src: portfolio-service.service
