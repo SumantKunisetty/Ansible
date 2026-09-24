@@ -19,7 +19,7 @@
       mode: '0755'
 
    - name: download and extract the package
-     ansbile.builtin.unarchive:
+     ansible.builtin.unarchive:
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/portfolio-service.tar.gz
       dest: /app
       remote_src: true
@@ -27,7 +27,7 @@
       chdir: /app
 
    - name: change the permission of gradle
-     ansbile.builtin.user:
+     ansible.builtin.user:
       path: gradle
       mode: 777
 
