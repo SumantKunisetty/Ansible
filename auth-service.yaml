@@ -24,6 +24,7 @@
      ansible.builtin.archive:
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/auth-service.tar.gz
       dest: /app
+      remote_src: true
      args:
       chdir: /app
   
