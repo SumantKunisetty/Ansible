@@ -18,7 +18,6 @@
       state: directory
       mode: '0755'
 
-
    - name: download and extract the package
      ansible.builtin.unarchive:
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/portfolio-service.tar.gz
@@ -42,7 +41,7 @@
 
    - name: restarting the systemctl service
      ansible.builtin.systemd_service:
-      name: portfolio.service
+      name: portfolio-service
       daemon-reload: true
       enabled: true
       state: restarted   
