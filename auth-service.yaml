@@ -25,11 +25,11 @@
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/auth-service.tar.gz
       dest: /app
       remote_src: yes
-     args:
-      chdir: /app
   
    - name: build the code
      ansible.builtin.shell: CGO_ENABLED=0 go build -o auth-service ./cmd/server
+     args:
+      chdir: /app
     
    - name: copy the service file
      ansible.builtin.copy:
