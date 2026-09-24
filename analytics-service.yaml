@@ -45,4 +45,4 @@
       name: analytics-service
       daemon-reload: true
       enabled: true
-      restarted: true    
+      state: restarted    
