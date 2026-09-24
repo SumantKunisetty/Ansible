@@ -9,7 +9,7 @@
     
    - name: create user app-user 
      ansible.builtin.user:
-      name: app-user
+      name: appuser
       shell: /bin/false
 
    - name: create app directory
@@ -17,6 +17,8 @@
       path: /app
       state: directory
       mode: '0755'
+      owner: appuser
+      group: appuser
 
    - name: download and extract the package
      ansible.builtin.unarchive:
@@ -33,6 +35,11 @@
      ansible.builtin.shell: ./gradlew bootJar --no-daemon -x test
      args:
       chdir: /app
+  
+   - name: copy the jar file
+     ansible.builtin.copy:
+      src: /app/build/libs/*.jar
+      dest: /app/portfolio-service.jar 
 
    - name: copy the service file
      ansible.builtin.copy:
