@@ -21,10 +21,10 @@
       mode: '0755'
     
    - name: Download and extract the application
-     ansible.builtin.archive:
+     ansible.builtin.unarchive:
       src: https://raw.githubusercontent.com/raghudevopsb88/wealth-project/main/artifacts/auth-service.tar.gz
       dest: /app
-      remote_src: true
+      remote_src: yes
      args:
       chdir: /app
   
