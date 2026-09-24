@@ -15,7 +15,7 @@
       ansible.builtin.dnf:
        name: 
         - "@postgresql:16/server"
-        - "@postgresql"
+        - "@postgresql:16"
     
     - name: Initialize postgres
       ansible.builtin.shell: /usr/pgsql-16/bin/postgresql-16-setup initdb
