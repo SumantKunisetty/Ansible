@@ -17,8 +17,7 @@
       path: /app
       state: directory
       mode: '0755'
-     args:
-      chdir: /app
+
 
    - name: download and extract the package
      ansible.builtin.unarchive:
@@ -33,6 +32,8 @@
 
    - name: build the application using gradle
      ansible.builtin.shell: ./gradlew bootJar --no-daemon -x test
+     args:
+      chdir: /app
 
    - name: copy the service file
      ansible.builtin.copy:
