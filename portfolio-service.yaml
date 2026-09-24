@@ -27,7 +27,7 @@
 
    - name: change the permission of gradle
      ansible.builtin.file:
-      path: gradle
+      path: /app/gradle
       mode: 777
 
    - name: build the application using gradle
