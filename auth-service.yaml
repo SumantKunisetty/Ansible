@@ -16,8 +16,8 @@
      ansible.builtin.file:
       path: /app
       state: directory
-      owner: app-user
-      group: app-user
+      owner: appuser
+      group: appuser
       mode: '0755'
     
    - name: Download and extract the application
